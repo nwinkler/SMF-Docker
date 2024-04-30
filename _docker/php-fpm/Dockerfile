@@ -21,9 +21,12 @@ FROM backend as smf
 
 WORKDIR /app
 
+# Download from the archive site:
+# https://download.simplemachines.org/index.php?archive;b=5;v=109
+COPY smf_2-1-1_install.zip install.zip
+
 # https://0exclusive.de/smf/smf2.1_nightly_install.zip
-RUN curl -s -k -o install.zip https://download.simplemachines.org/index.php?thanks;filename=smf_2-1-1_install.zip && \
-	unzip install.zip && \
+RUN unzip install.zip && \
 	rm install.zip; \
 	chown -R www-data:www-data . && \
 	chmod -R 777 .
