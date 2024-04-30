@@ -84,6 +84,18 @@ services:
       - mariadb
       - postgres
 
+  phpmyadmin:
+    image: phpmyadmin:5
+    container_name: ${APP_NAME}_phpmyadmin
+    restart: always
+    environment:
+      - PMA_ARBITRARY=1
+    ports:
+      - 8081:80
+    depends_on:
+      - mariadb
+      - postgres
+
   php-fpm:
     build:
       context: ./_docker/php-fpm
