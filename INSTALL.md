@@ -33,3 +33,16 @@ docker-compose exec smf bash -c "cd /app && chown -R www-data:www-data *"
 
 docker-compose exec smf bash -c "ls -als /app"
 ```
+
+### Database
+
+```bash
+docker exec -i test_mariadb sh -c 'exec mariadb "smf" -u"user" -p"pass"' < ../Backups/2024-06-17\ Forum\ Backup/phpMyAdmin\ Backup/DB3405906.sql
+```
+
+### SMF Updates
+
+* 2.1.3 Update: https://custom.simplemachines.org/mods/downloads/smf_2-1-3_patch.tar.gz
+* 2.1.4 Update: https://custom.simplemachines.org/mods/downloads/smf_2-1-4_patch.tar.gz
+
+Copied into backups/slyboard/Packages
