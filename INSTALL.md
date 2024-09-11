@@ -12,6 +12,22 @@
 
 `Settings.php`
 
+```php
+$boardurl = 'http://localhost';
+$webmaster_email = 'no-reply@teufelskueche-bn.de';
+$db_server = 'mariadb';
+$db_name = 'smf';
+$db_user = 'user';
+$db_passwd = 'pass';
+$cachedir = '/app/cache';
+$boarddir = '/app';
+$sourcedir = '/app/Sources';
+$packagesdir = '/app/Packages';
+$tasksdir = '/app/Sources/tasks';
+$cachedir = '/app/cache';
+$cachedir_sqlite = '/app/cache';
+```
+
 * $db_server
 * $db_name
 * $db_user
