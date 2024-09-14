@@ -82,3 +82,8 @@ mariadb-dump smf --no-tablespaces -u user > backup.sql
 * 2.1.4 Update: https://custom.simplemachines.org/mods/downloads/smf_2-1-4_patch.tar.gz
 
 Copied into backups/slyboard/Packages
+
+```bash
+dco cp ../Backups/smf_2-1-3_patch.tar.gz smf:/app/Packages
+dco cp ../Backups/smf_2-1-4_patch.tar.gz smf:/app/Packages
+```

@@ -8,6 +8,8 @@ if [[ -z "$BACKUP" ]]; then
     exit 1
 fi
 
+echo "Using backup folder: $BACKUP"
+
 echo "Removing /app"
 docker-compose exec smf bash -c "rm -rf /app/*"
 
