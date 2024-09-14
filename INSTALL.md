@@ -73,7 +73,7 @@ docker-compose exec mysql bash
 
 chown root:root /root/.my.cnf && chmod 0600 /root/.my.cnf
 
-mysqldump smf --no-tablespaces -u user > backup.sql
+mysqldump smf --no-tablespaces > backup.sql
 ```
 
 ### SMF Updates
