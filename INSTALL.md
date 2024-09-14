@@ -56,6 +56,26 @@ docker-compose exec smf bash -c "ls -als /app"
 docker exec -i test_mariadb sh -c 'exec mariadb "smf" -u"user" -p"pass"' < ../Backups/2024-06-17\ Forum\ Backup/phpMyAdmin\ Backup/DB3405906.sql
 ```
 
+Export:
+
+File: .my.cnf
+
+```cnf
+[mariadb-dump]
+user=user
+password=pass
+```
+
+```bash
+docker-compose cp .my.cnf mariadb:/root
+
+docker-compose exec mariadb bash
+
+chown root:root /root/.my.cnf && chmod 0600 /root/.my.cnf
+
+mariadb-dump smf --no-tablespaces -u user > backup.sql
+```
+
 ### SMF Updates
 
 * 2.1.3 Update: https://custom.simplemachines.org/mods/downloads/smf_2-1-3_patch.tar.gz
