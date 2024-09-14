@@ -15,7 +15,7 @@
 ```php
 $boardurl = 'http://localhost';
 $webmaster_email = 'no-reply@teufelskueche-bn.de';
-$db_server = 'mariadb';
+$db_server = 'mysql';
 $db_name = 'smf';
 $db_user = 'user';
 $db_passwd = 'pass';
@@ -53,7 +53,7 @@ docker-compose exec smf bash -c "ls -als /app"
 ### Database
 
 ```bash
-docker exec -i test_mariadb sh -c 'exec mariadb "smf" -u"user" -p"pass"' < ../Backups/2024-06-17\ Forum\ Backup/phpMyAdmin\ Backup/DB3405906.sql
+docker exec -i test_mysql sh -c 'exec mysql "smf" -u"user" -p"pass"' < ../Backups/2024-06-17\ Forum\ Backup/phpMyAdmin\ Backup/DB3405906.sql
 ```
 
 Export:
@@ -61,19 +61,19 @@ Export:
 File: .my.cnf
 
 ```cnf
-[mariadb-dump]
+[mysqldump]
 user=user
 password=pass
 ```
 
 ```bash
-docker-compose cp .my.cnf mariadb:/root
+docker-compose cp .my.cnf mysql:/root
 
-docker-compose exec mariadb bash
+docker-compose exec mysql bash
 
 chown root:root /root/.my.cnf && chmod 0600 /root/.my.cnf
 
-mariadb-dump smf --no-tablespaces -u user > backup.sql
+mysqldump smf --no-tablespaces -u user > backup.sql
 ```
 
 ### SMF Updates

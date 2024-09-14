@@ -25,6 +25,6 @@ docker-compose exec smf bash -c "ls -als /app"
 # DATABASE IMPORT
 echo "Importing database"
 
-docker exec -i test_mariadb sh -c 'exec mariadb "smf" -u"user" -p"pass"' < "$BACKUP"/backup.sql
+docker exec -i test_mysql sh -c 'exec mysql "smf" -u"user" -p"pass"' < "$BACKUP"/backup.sql
 
 echo "Done"
