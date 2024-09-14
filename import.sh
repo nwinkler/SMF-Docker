@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-BACKUP="../Backups/test"
+BACKUP="$1"
+
+if [[ -z "$BACKUP" ]]; then
+    echo "Please provide the backup path as a parameter"
+
+    exit 1
+fi
 
 echo "Removing /app"
 docker-compose exec smf bash -c "rm -rf /app/*"
