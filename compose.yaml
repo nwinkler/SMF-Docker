@@ -104,6 +104,7 @@ services:
       context: ./_docker/php-fpm
       args:
         PHP_VERSION: ${PHP_VERSION}
+        SMF_VERSION: ${SMF_VERSION}
       target: backend
     container_name: ${APP_NAME}_php_fpm
     working_dir: /app
@@ -115,6 +116,9 @@ services:
   smf:
     build:
       context: ./_docker/php-fpm
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        SMF_VERSION: ${SMF_VERSION}
       target: smf
     container_name: ${APP_NAME}_smf
     working_dir: /app
