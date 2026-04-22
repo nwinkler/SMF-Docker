@@ -23,10 +23,10 @@ WORKDIR /app
 
 ARG SMF_VERSION
 
+COPY smf_${SMF_VERSION}_install.zip /app/install.zip
+
 # https://0exclusive.de/smf/smf2.1_nightly_install.zip
 RUN set -eux; \
-	SMF_VERSION_DASH="$(printf '%s' "${SMF_VERSION}" | tr '.' '-')"; \
-	curl -s -k -o install.zip "https://download.simplemachines.org/index.php/smf_${SMF_VERSION_DASH}_install.zip" && \
 	unzip install.zip && \
 	rm install.zip; \
 	chown -R www-data:www-data . && \
