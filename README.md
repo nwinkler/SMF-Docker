@@ -46,6 +46,51 @@ docker compose -f nginx.yaml up -d
 docker compose -f nginx.yaml down
 ```
 
+## Multi-platform usage (Apple Silicon + Raspberry Pi)
+
+This project uses one `compose.yaml` for different CPU architectures via `DOCKER_PLATFORM`.
+
+- Default (when not set): `linux/amd64`
+- Apple Silicon with amd64 emulation: `linux/amd64`
+- Raspberry Pi 64-bit: `linux/arm64/v8`
+
+Run with an explicit platform:
+
+```sh
+DOCKER_PLATFORM=linux/amd64 docker compose up -d --build
+```
+
+```sh
+DOCKER_PLATFORM=linux/arm64/v8 docker compose up -d --build
+```
+
+Stop:
+
+```sh
+DOCKER_PLATFORM=linux/arm64/v8 docker compose down
+```
+
+Optional: use platform-specific env files to avoid typing the variable each time.
+
+Example `env.amd64`:
+
+```env
+DOCKER_PLATFORM=linux/amd64
+```
+
+Example `env.arm64`:
+
+```env
+DOCKER_PLATFORM=linux/arm64/v8
+```
+
+Use them like this:
+
+```sh
+docker compose --env-file env.amd64 up -d --build
+docker compose --env-file env.arm64 up -d --build
+```
+
 ## Hosts within your environment
 
 Use the following information to install/configure your SMF:
