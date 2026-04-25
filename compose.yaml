@@ -2,7 +2,6 @@ services:
 
   memcached:
     image: memcached:alpine
-    platform: ${DOCKER_PLATFORM:-linux/amd64}
     container_name: ${APP_NAME}_memcached
 
   #redis:
@@ -38,7 +37,6 @@ services:
 
   mysql:
       image: mysql:8.0.36
-      platform: ${DOCKER_PLATFORM:-linux/amd64}
       container_name: ${APP_NAME}_mysql
       command: --default-authentication-plugin=mysql_native_password
       restart: always
@@ -75,7 +73,6 @@ services:
 
   adminer:
     image: adminer
-    platform: ${DOCKER_PLATFORM:-linux/amd64}
     container_name: ${APP_NAME}_adminer
     restart: always
     environment:
@@ -88,7 +85,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:5
-    platform: ${DOCKER_PLATFORM:-linux/amd64}
     container_name: ${APP_NAME}_phpmyadmin
     restart: always
     environment:
@@ -106,7 +102,6 @@ services:
         PHP_VERSION: ${PHP_VERSION}
         SMF_VERSION: ${SMF_VERSION}
       target: backend
-    platform: ${DOCKER_PLATFORM:-linux/amd64}
     container_name: ${APP_NAME}_php_fpm
     working_dir: /app
     restart: always
@@ -121,7 +116,6 @@ services:
         PHP_VERSION: ${PHP_VERSION}
         SMF_VERSION: ${SMF_VERSION}
       target: smf
-    platform: ${DOCKER_PLATFORM:-linux/amd64}
     container_name: ${APP_NAME}_smf
     working_dir: /app
     volumes:
@@ -131,7 +125,6 @@ services:
 
   apache:
     image: bitnamilegacy/apache
-    platform: ${DOCKER_PLATFORM:-linux/amd64}
     container_name: ${APP_NAME}_apache
     restart: always
     ports:

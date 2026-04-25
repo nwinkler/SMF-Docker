@@ -48,40 +48,48 @@ docker compose -f nginx.yaml down
 
 ## Multi-platform usage (Apple Silicon + Raspberry Pi)
 
-This project uses one `compose.yaml` for different CPU architectures via `DOCKER_PLATFORM`.
+This project uses one `compose.yaml` and lets Docker detect the host CPU architecture automatically.
 
-- Default (when not set): `linux/amd64`
-- Apple Silicon with amd64 emulation: `linux/amd64`
-- Raspberry Pi 64-bit: `linux/arm64/v8`
+- Apple Silicon: runs as `linux/arm64` by default
+- Raspberry Pi 64-bit: runs as `linux/arm64` by default
+- x86_64 hosts: run as `linux/amd64` by default
 
-Run with an explicit platform:
-
-```sh
-DOCKER_PLATFORM=linux/amd64 docker compose up -d --build
-```
+Run normally:
 
 ```sh
-DOCKER_PLATFORM=linux/arm64/v8 docker compose up -d --build
+docker compose up -d --build
 ```
 
 Stop:
 
 ```sh
-DOCKER_PLATFORM=linux/arm64/v8 docker compose down
+docker compose down
 ```
 
-Optional: use platform-specific env files to avoid typing the variable each time.
+Optional: force a specific architecture when needed (for example, amd64 emulation on Apple Silicon):
+
+```sh
+DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose up -d --build
+```
+
+You can also force arm64 explicitly:
+
+```sh
+DOCKER_DEFAULT_PLATFORM=linux/arm64/v8 docker compose up -d --build
+```
+
+Optional: use env files to avoid typing the variable each time.
 
 Example `env.amd64`:
 
 ```env
-DOCKER_PLATFORM=linux/amd64
+DOCKER_DEFAULT_PLATFORM=linux/amd64
 ```
 
 Example `env.arm64`:
 
 ```env
-DOCKER_PLATFORM=linux/arm64/v8
+DOCKER_DEFAULT_PLATFORM=linux/arm64/v8
 ```
 
 Use them like this:
