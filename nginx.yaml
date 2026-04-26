@@ -19,15 +19,10 @@ services:
   #     file: compose.yaml
   #     service: mysql
 
-  mariadb:
+  mysql:
     extends:
       file: compose.yaml
-      service: mariadb
-
-  postgres:
-    extends:
-      file: compose.yaml
-      service: postgres
+      service: mysql
 
   adminer:
     extends:
@@ -49,15 +44,15 @@ services:
     container_name: ${APP_NAME}_nginx
     restart: always
     ports:
-      - 80:8080
-      - 443:8443
+      - 8088:8080
+      - 8443:8443
     volumes:
       - ./_docker/nginx:/opt/bitnami/nginx/conf/server_blocks:ro
       #- ./_docker/certs:/certs
       - web:/app
       #- ./src:/app
     depends_on:
-      - mariadb
+      - mysql
       - smf
 
 volumes:

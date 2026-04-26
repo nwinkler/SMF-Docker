@@ -32,6 +32,11 @@ See `.env` file.
 docker compose up -d
 ```
 
+Apache is available at:
+
+- `http://localhost:8088` (redirects to HTTPS)
+- `https://localhost:8443`
+
 ```sh
 docker compose down
 ```
@@ -41,6 +46,11 @@ docker compose down
 ```sh
 docker compose -f nginx.yaml up -d
 ```
+
+Nginx is available at:
+
+- `http://localhost:8088` (redirects to HTTPS)
+- `https://localhost:8443`
 
 ```sh
 docker compose -f nginx.yaml down

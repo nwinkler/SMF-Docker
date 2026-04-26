@@ -13,7 +13,7 @@
 `Settings.php`
 
 ```php
-$boardurl = 'http://localhost';
+$boardurl = 'https://localhost:8443';
 $webmaster_email = 'no-reply@teufelskueche-bn.de';
 $db_server = 'mysql';
 $db_name = 'smf';
