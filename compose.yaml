@@ -47,6 +47,12 @@ services:
         - MYSQL_DATABASE=${DB_NAME}
         - MYSQL_USER=${DB_USER}
         - MYSQL_PASSWORD=${DB_PASS}
+      healthcheck:
+        test: mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD -h localhost -e 'SHOW DATABASES'
+        interval: 10s
+        timeout: 5s
+        retries: 25
+        start_period: 30s
 
   #mariadb:
   #  image: mariadb
@@ -81,7 +87,8 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   phpmyadmin:
     image: phpmyadmin:5
@@ -93,7 +100,8 @@ services:
     ports:
       - 8081:80
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   php-fpm:
     build:
@@ -136,8 +144,10 @@ services:
       - web:/app
       #- ./src:/app
     depends_on:
-      - mysql
-      - smf
+      mysql:
+        condition: service_healthy
+      smf:
+        condition: service_started
 
 volumes:
   redis:
