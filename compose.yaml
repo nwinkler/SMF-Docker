@@ -49,9 +49,9 @@ services:
         - MYSQL_PASSWORD=${DB_PASS}
       healthcheck:
         test: mysql -u$$MYSQL_USER -p$$MYSQL_PASSWORD -h localhost -e 'SHOW DATABASES'
-        interval: 10s
-        timeout: 5s
-        retries: 25
+        interval: 20s
+        timeout: 10s
+        retries: 50
         start_period: 30s
 
   #mariadb:
